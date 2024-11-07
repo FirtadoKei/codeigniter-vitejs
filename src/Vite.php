@@ -118,6 +118,9 @@ class Vite
 	public static function routeIsNotExluded(): bool
 	{
 		$routes = explode(',', env('VITE_EXCLUDED_ROUTES'));
+
+        # skip checking if VITE_EXCLUDED_ROUTES only contain empty string
+        if(count($routes) === 0 && $routes[0] === "") return true;
 		
 		# remove spaces before and after the route.
 		// foreach($routes as $i => $route) $routes[$i] = ltrim( rtrim($route) );
